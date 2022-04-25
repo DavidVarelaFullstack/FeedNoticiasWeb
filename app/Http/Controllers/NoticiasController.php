@@ -25,16 +25,14 @@ class NoticiasController extends Controller
 
     public function insertarNoticia(Request $request)
     {
+        $flag = session('Usuario');
 
-        $usuario = $request->usuario;
+        if($flag != null){
 
-        $password = $request->contrasena;
-
-        if ($usuario == "dg2BVDdsWdds" && $password == "daS232dv2€#?das+dsfs428fNsFsugv*+TrUb") {
-            session()->put('Usuario', 'Valido');
+            $this->validate($request, ['titulo' => 'required', 'descripcion' => 'required', 'enlace' => 'required', 'imagen' => 'required', 'fecha' => 'required']);
+            session()->put('Mensaje', 'Noticia registrada con éxito');
             return redirect()->route('formulario');
         } else {
-            session()->put('Mensaje', 'Credenciales no válidas');
             return redirect()->route('inicio');
         }
     }
