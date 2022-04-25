@@ -1,9 +1,19 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Esto es una prueba</title>
-    </head>
-    <body>
-        <h1>Esto es una prueba</h1>
-    </body>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="mx-auto my-auto">
+        <form action="/" method="POST" enctype="multipart/form-data">
+
+        </form>
+    </div>
+</body>
+
 </html>
