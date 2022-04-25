@@ -18,3 +18,7 @@ Route::get('/', function () {
 })->name('inicio');
 
 Route::post('/login', 'App\Http\Controllers\ReunionesController@inicioSesion');
+
+Route::get('/formulario', 'App\Http\Controllers\ReunionesController@formulario')->name('formulario');
+
+Route::post('/insertarNoticia', 'App\Http\Controllers\ReunionesController@inicioSesion');
