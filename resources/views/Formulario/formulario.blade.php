@@ -10,7 +10,7 @@
 
 <body>
     <div class="mx-auto my-auto">
-        <form action="/login" method="POST" enctype="multipart/form-data">
+        <form action="/insertarNoticia" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             <label>Titulo</label><br>
             <input type="text" name="titulo" id="titulo"><br>
