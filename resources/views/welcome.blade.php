@@ -10,8 +10,11 @@
 
 <body>
     <div class="mx-auto my-auto">
-        <form action="/" method="POST" enctype="multipart/form-data">
-
+        <form action="/login" method="POST" enctype="multipart/form-data">
+            <label>Usuario</label><br>
+            <input type="text" name="usuario" id="usuario"><br>
+            <label>Contraseña</label><br>
+            <input type="password" name="contrasena" id="contrasena">
         </form>
     </div>
 </body>
