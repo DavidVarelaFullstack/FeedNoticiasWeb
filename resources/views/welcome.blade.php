@@ -11,10 +11,12 @@
 <body>
     <div class="mx-auto my-auto">
         <form action="/login" method="POST" enctype="multipart/form-data">
+            {{ csrf_field() }}
             <label>Usuario</label><br>
             <input type="text" name="usuario" id="usuario"><br>
             <label>Contraseña</label><br>
-            <input type="password" name="contrasena" id="contrasena">
+            <input type="password" name="contrasena" id="contrasena"><br>
+            <button type="submit">Login</button>
         </form>
     </div>
 </body>

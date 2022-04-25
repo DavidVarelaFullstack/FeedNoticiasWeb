@@ -60,7 +60,7 @@ class NoticiasController extends Controller
         $flag = session('Usuario');
 
         if($flag != null){
-            return view('formulario');
+            return view('Formulario.formulario');
         }
     }
 }
