@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Noticia;
 use Illuminate\Http\Request;
 
 class NoticiasController extends Controller
@@ -30,6 +31,17 @@ class NoticiasController extends Controller
         if($flag != null){
 
             $this->validate($request, ['titulo' => 'required', 'descripcion' => 'required', 'enlace' => 'required', 'imagen' => 'required', 'fecha' => 'required']);
+
+            $noticia = new Noticia();
+
+            $noticia->Titulo = $request->titulo;
+            $noticia->Descripcion = $request->descripcion;
+            $noticia->Enlace = $request->enlace;
+            $noticia->Imagen = $request->imagen;
+            $noticia->Fecha = $request->fecha;
+
+            $noticia->save();
+
             session()->put('Mensaje', 'Noticia registrada con éxito');
             return redirect()->route('formulario');
         } else {
@@ -37,13 +49,13 @@ class NoticiasController extends Controller
         }
     }
 
-    public function cerrarSesion(Request $request)
+    public function cerrarSesion()
     {
         session()->put('Usuario', null);
         return redirect()->route('inicio');
     }
 
-    public function formulario(Request $request)
+    public function formulario()
     {
         $flag = session('Usuario');
 
