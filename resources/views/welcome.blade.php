@@ -2,7 +2,7 @@
 
 @section('contenido')
     <div class="container-fluid d-flex" style="height: 100%;" id="div">
-        <form class="d-inline-block mx-auto my-auto text-white" action="/login" method="POST" enctype="multipart/form-data">
+        <form action="/login" class="d-inline-block mx-auto my-auto text-white" method="POST">
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-9">

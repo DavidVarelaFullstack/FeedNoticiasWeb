@@ -17,10 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('inicio');
 
-Route::post('/login', 'App\Http\Controllers\NoticiasController@inicioSesion');
+Route::post('/login', 'App\Http\Controllers\NoticiasController@inicioSesion')->name('login');
 
 Route::get('/formulario', 'App\Http\Controllers\NoticiasController@formulario')->name('formulario');
 
-Route::post('/insertarNoticia', 'App\Http\Controllers\NoticiasController@insertarNoticia');
+Route::post('/insertarNoticia', 'App\Http\Controllers\NoticiasController@insertarNoticia')->name('insertarNoticia');
 
-Route::get('/cerrarSesion', 'App\Http\Controllers\NoticiasController@cerrarSesion');
+Route::get('/cerrarSesion', 'App\Http\Controllers\NoticiasController@cerrarSesion')->name('cerrarSesion');
