@@ -30,13 +30,21 @@ class NoticiasController extends Controller
 
         if($flag != null){
 
-            $this->validate($request, ['titulo' => 'required', 'descripcion' => 'required', 'enlace' => 'required', 'imagen' => 'required', 'fecha' => 'required']);
+            $this->validate($request, ['titulo' => 'required', 'descripcion' => 'required', 'enlace' => 'required', 'imagen' => 'sometimes|mimes:png', 'fecha' => 'required']);
 
             $noticia = new Noticia();
 
             $noticia->Titulo = $request->titulo;
             $noticia->Descripcion = $request->descripcion;
             $noticia->Enlace = $request->enlace;
+            $imagen = $_FILES['imagen']['name'];
+            if (!file_exists("/imagesNoticias/$request->titulo")) {
+                mkdir("imagesNoticias/$request->titulo", 0755, true);
+                move_uploaded_file($_FILES['imagen']['tmp_name'], "/imagesNoticias/$request->titulo/$imagen");
+            }else{
+                move_uploaded_file($_FILES['imagen']['tmp_name'], "/imagesNoticias/$request->titulo/$imagen");
+            }
+
             $noticia->Imagen = $request->imagen;
             $noticia->Fecha = $request->fecha;
 
