@@ -30,7 +30,7 @@ class NoticiasController extends Controller
 
         if($flag != null){
 
-            $this->validate($request, ['titulo' => 'required', 'descripcion' => 'required', 'enlace' => 'required', 'imagen' => 'sometimes|mimes:png', 'fecha' => 'required']);
+            $this->validate($request, ['titulo' => 'required', 'descripcion' => 'required', 'enlace' => 'required', 'imagen' => 'sometimes|mimes:png,jpg,jpeg', 'fecha' => 'required']);
 
             $noticia = new Noticia();
 
@@ -38,19 +38,27 @@ class NoticiasController extends Controller
             $noticia->Descripcion = $request->descripcion;
             $noticia->Enlace = $request->enlace;
             $imagen = $_FILES['imagen']['name'];
-            if (!file_exists("/imagesNoticias/$request->titulo")) {
+            if (!is_dir("/imagesNoticias/$request->titulo")) {
                 mkdir("imagesNoticias/$request->titulo", 0755, true);
-                move_uploaded_file($_FILES['imagen']['tmp_name'], "/imagesNoticias/$request->titulo/$imagen");
+                if($imagen != "" || $imagen != null) {
+                move_uploaded_file($_FILES['imagen']['tmp_name'], "imagesNoticias/$request->titulo/$imagen");
+                }else{
+                    //La imagen por defecto
+                }
             }else{
-                move_uploaded_file($_FILES['imagen']['tmp_name'], "/imagesNoticias/$request->titulo/$imagen");
+                move_uploaded_file($_FILES['imagen']['tmp_name'], "imagesNoticias/$request->titulo/$imagen");
             }
 
-            $noticia->Imagen = $request->imagen;
+            $noticia->Imagen = "http://www.feedcreation.eligeplus.com/imagesNoticias/$request->titulo/$imagen";
             $noticia->Fecha = $request->fecha;
 
-            $noticia->save();
+            if($noticia->save()){
+                session()->put('Mensaje', 'Noticia registrada con éxito.');
+            }else{
+                session()->put('Mensaje', 'Ha habido algún problema en registrar la noticia.');
+            }
 
-            session()->put('Mensaje', 'Noticia registrada con éxito');
+
             return redirect()->route('formulario');
         } else {
             return redirect()->route('inicio');
