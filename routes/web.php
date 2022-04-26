@@ -23,4 +23,4 @@ Route::get('/formulario', 'App\Http\Controllers\NoticiasController@formulario')-
 
 Route::post('/insertarNoticia', 'App\Http\Controllers\NoticiasController@insertarNoticia');
 
-Route::post('/cerrarSesion', 'App\Http\Controllers\NoticiasController@cerrarSesion');
+Route::get('/cerrarSesion', 'App\Http\Controllers\NoticiasController@cerrarSesion');
