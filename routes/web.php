@@ -21,6 +21,12 @@ Route::post('/login', 'App\Http\Controllers\NoticiasController@inicioSesion')->n
 
 Route::get('/formulario', 'App\Http\Controllers\NoticiasController@formulario')->name('formulario');
 
+Route::get('/noticias', 'App\Http\Controllers\NoticiasController@noticias')->name('noticias');
+
+Route::get('/edicion', 'App\Http\Controllers\NoticiasController@edicion')->name('edicion');
+
 Route::post('/insertarNoticia', 'App\Http\Controllers\NoticiasController@insertarNoticia')->name('insertarNoticia');
+
+Route::post('/actualizarNoticia', 'App\Http\Controllers\NoticiasController@actualizarNoticia')->name('actualizarNoticia');
 
 Route::get('/cerrarSesion', 'App\Http\Controllers\NoticiasController@cerrarSesion')->name('cerrarSesion');

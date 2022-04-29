@@ -65,6 +65,49 @@ class NoticiasController extends Controller
         }
     }
 
+    public function actualizarNoticia(Request $request)
+    {
+        $flag = session('Usuario');
+
+        if($flag != null){
+
+            $this->validate($request, ['titulo' => 'required', 'descripcion' => 'required', 'enlace' => 'required', 'fecha' => 'required']);
+
+            //, 'imagen' => 'sometimes|mimes:png,jpg,jpeg'
+
+            $noticia = Noticia::find($request->Id);
+
+            $noticia->Titulo = $request->titulo;
+            $noticia->Descripcion = $request->descripcion;
+            $noticia->Enlace = $request->enlace;
+            // $imagen = $_FILES['imagen']['name'];
+            // if (!is_dir("/imagesNoticias/$request->titulo")) {
+            //     mkdir("imagesNoticias/$request->titulo", 0755, true);
+            //     if($imagen != "" || $imagen != null) {
+            //     move_uploaded_file($_FILES['imagen']['tmp_name'], "imagesNoticias/$request->titulo/$imagen");
+            //     }else{
+            //         //La imagen por defecto
+            //     }
+            // }else{
+            //     move_uploaded_file($_FILES['imagen']['tmp_name'], "imagesNoticias/$request->titulo/$imagen");
+            // }
+
+            // $noticia->Imagen = "http://www.feedcreation.eligeplus.com/imagesNoticias/$request->titulo/$imagen";
+            $noticia->Fecha = $request->fecha;
+
+            if($noticia->save()){
+                session()->put('Mensaje', 'Noticia actualizada con éxito.');
+            }else{
+                session()->put('Mensaje', 'Ha habido algún problema en actualizar la noticia.');
+            }
+
+
+            return redirect()->route('formulario');
+        } else {
+            return redirect()->route('inicio');
+        }
+    }
+
     public function cerrarSesion()
     {
         session()->put('Usuario', null);
@@ -77,6 +120,30 @@ class NoticiasController extends Controller
 
         if($flag != null){
             return view('Formulario.formulario');
+        }
+    }
+
+    public function edicion(Request $request)
+    {
+        $flag = session('Usuario');
+
+        if($flag != null){
+
+            $noticia = Noticia::find($request->Id);
+
+            return view('Formulario.edicion', compact("noticia"));
+        }
+    }
+
+    public function noticias(Request $request)
+    {
+        $flag = session('Usuario');
+
+        if($flag != null){
+
+            $noticias = Noticia::all();
+
+            return view('Formulario.noticias', compact("noticias"));
         }
     }
 }
