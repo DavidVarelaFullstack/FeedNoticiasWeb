@@ -29,7 +29,7 @@
             <label class="fw-bold required mt-4" style="font-size: 19px;">Titulo (Evitar escribir un título ya escrito previamente)</label><br>
             <input class="form-control" required type="text" name="titulo" id="titulo"><br>
             <label class="fw-bold required" style="font-size: 19px;">Descripción</label><br>
-            <textarea maxlength="255" cols="40" rows="8" name="descripcion" id="descripcion"></textarea><br>
+            <textarea maxlength="255" cols="80" rows="8" name="descripcion" id="descripcion"></textarea><br>
             <label class="fw-bold required" style="font-size: 19px;">Enlace</label><br>
             <input class="form-control" required type="text" name="enlace" id="enlace"><br>
             <label class="fw-bold required" style="font-size: 19px;">Imagen (<span class="text-decoration-underline">que sea cuadrada para mayor calidad, ejemplo: 800x800</span>)</label><br>
