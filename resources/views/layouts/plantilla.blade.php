@@ -13,7 +13,7 @@
         @yield('cabecera')
 </head>
 
-<body>
+<body id="div">
     @yield('contenido')
 
     @yield('pie_pagina')

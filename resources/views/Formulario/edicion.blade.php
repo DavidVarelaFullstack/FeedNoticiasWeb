@@ -2,7 +2,16 @@
 
 
 @section('contenido')
-    <div class="container-fluid d-flex" style="height: 100%;" id="div">
+    <div class="container-fluid d-flex" style="height: 100%;">
+        <div class="row mt-5 ms-5">
+            <div class="col-2">
+                <a href="/noticias" style="text-decoration: none">
+                    <button class="d-block mx-auto btn btn-outline-light" type="button">
+                        Volver a noticias
+                    </button>
+                </a>
+            </div>
+        </div>
         <form class="mx-auto my-auto text-white fw-bold" action="/actualizarNoticia" method="POST"
             enctype="multipart/form-data">
             {{ csrf_field() }}

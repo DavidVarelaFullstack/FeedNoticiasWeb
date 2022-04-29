@@ -2,27 +2,46 @@
 
 
 @section('contenido')
-    <table class="mx-auto my-auto table-responsive" id="div" style="width: 80%;">
+
+<div class="row container-fluid">
+    <div class="row mt-5 ms-5">
+        <div class="col-2">
+            <a href="/formulario" style="text-decoration: none">
+                <button class="d-block mx-auto btn btn-outline-light" type="button">
+                        Volver al formulario
+                </button>
+            </a>
+        </div>
+    </div>
+<div class="col-1"></div>
+<div class="col-10">
+    <table class="mx-auto my-auto table-responsive text-white" style="width: 100%;">
         <thead>
             <th>Título</th>
+            <th></th>
             <th>Descripción</th>
+            <th></th>
             <th>Acciones</th>
         </thead>
         <tbody>
             @foreach ($noticias as $noticia)
                 <tr>
                     <td style="padding-top: 15px;" VALIGN="TOP">{{ $noticia->Titulo }}</td>
+                    <td class="px-2"></td>
                     <td style="padding-top: 15px;" VALIGN="TOP">{{ $noticia->Descripcion }}</td>
+                    <td class="px-2"></td>
                     <td style="padding-top: 15px;" VALIGN="TOP">
                         <form action="/edicion" method="GET">
                             <input type="hidden" name="Id" id="Id" value="{{ $noticia->id }}">
-                            <button>Editar noticia</button>
+                            <button class="d-block mx-auto btn btn-outline-light">Editar noticia</button>
                         </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+</div>
+</div>
     {{-- <div class="container-fluid d-flex" style="height: 100%;" id="div">
         <form class="mx-auto my-auto text-white fw-bold" action="/actualizarNoticia" method="POST"
             enctype="multipart/form-data">
