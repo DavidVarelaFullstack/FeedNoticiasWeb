@@ -155,7 +155,7 @@ class NoticiasController extends Controller
 
         if ($flag != null) {
 
-            $noticias = Noticia::all();
+            $noticias = Noticia::orderBy("Fecha", "DESC")->get();
 
             return view('Formulario.noticias', compact("noticias"));
         }
