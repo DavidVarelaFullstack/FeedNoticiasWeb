@@ -30,7 +30,7 @@ class NoticiasController extends Controller
 
         if($flag != null){
 
-            $this->validate($request, ['titulo' => 'required', 'descripcion' => 'required', 'enlace' => 'required', 'imagen' => 'sometimes|mimes:png,jpg,jpeg', 'fecha' => 'required']);
+            $this->validate($request, ['titulo' => 'required', 'descripcion' => 'required', 'enlace' => 'required', 'imagen' => 'required|mimes:png,jpg,jpeg', 'fecha' => 'required']);
 
             $noticia = new Noticia();
 
@@ -42,14 +42,14 @@ class NoticiasController extends Controller
                 mkdir("imagesNoticias/$request->titulo", 0755, true);
                 if($imagen != "" || $imagen != null) {
                 move_uploaded_file($_FILES['imagen']['tmp_name'], "imagesNoticias/$request->titulo/$imagen");
-                }else{
-                    //La imagen por defecto
+                $noticia->Imagen = "https://feedcreation.eligeplus.com/imagesNoticias/$request->titulo/$imagen";
                 }
             }else{
-                move_uploaded_file($_FILES['imagen']['tmp_name'], "imagesNoticias/$request->titulo/$imagen");
+                move_uploaded_file($_FILES['imagen']['tmp_name'], "imagesNoticias/$request->titulo/$imagen(2)");
+                $noticia->Imagen = "https://feedcreation.eligeplus.com/imagesNoticias/$request->titulo/$imagen";
             }
 
-            $noticia->Imagen = "http://www.feedcreation.eligeplus.com/imagesNoticias/$request->titulo/$imagen";
+
             $noticia->Fecha = $request->fecha;
 
             if($noticia->save()){
